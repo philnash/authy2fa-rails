@@ -1,0 +1,14 @@
+<h1>Welcome Back!</h1>
+<p>You never write. You never call. But we're glad you came, regardless! Be a pal and confirm your username and password, would you?</p>
+
+<%= form_tag sessions_path do %>
+  <div class="form-group">
+    <%= label_tag :email %>
+    <%= email_field_tag :email, @user.email, class: "form-control", placeholder: "you@yourdomain.com" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, @user.password, class: "form-control" %>
+  </div>
+  <button class="btn btn-primary" type="submit">Log In</button>
+<% end -%>
