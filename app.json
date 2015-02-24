@@ -1,6 +1,7 @@
 {
   "name": "Two Factor Authy",
   "description": "Two Factor Authentication in Rails with Authy",
+  "repository": "https://github.com/TwilioDevEd/authy2fa-rails",
   "keywords": [
     "security", "2fa", "twilio"
   ],
