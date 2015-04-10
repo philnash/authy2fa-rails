@@ -5,6 +5,7 @@
   "keywords": [
     "security", "2fa", "twilio"
   ],
+  "success_url": "/landing.html",
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
     "AUTHY_KEY": {
