@@ -3,7 +3,7 @@ class AuthyController < ApplicationController
 
   # The webhook setup for our Authy application this is where
   # the response from a OneTouch request will come
-  def authy_callback
+  def callback
     authy_id = params[:authy_id]
     begin
       @user = User.find_by! authy_id: authy_id

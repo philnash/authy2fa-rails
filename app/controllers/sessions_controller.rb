@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  protect_from_forgery except: [:authy_callback, :send_token]
-
   def new
     @user = User.new
   end
