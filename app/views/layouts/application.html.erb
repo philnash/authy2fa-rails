@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>TwoFactorAuthy</title>
-  <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/bootswatch/3.3.5/flatly/bootstrap.min.css', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    '//cdnjs.cloudflare.com/ajax/libs/authy-forms.css/2.2/form.authy.min.css', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -36,6 +36,8 @@
     Made with <i class="fa fa-heart"></i> by your pals
     <a href="http://www.twilio.com">@twilio</a>
   </footer>
+  <%= javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js', 'data-turbolinks-track' => true %>
+  <%= yield :javascript %>
 
 </body>
 </html>

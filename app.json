@@ -8,9 +8,9 @@
   "success_url": "/landing.html",
   "addons": ["heroku-postgresql:hobby-dev"],
   "env": {
-    "AUTHY_KEY": {
+    "AUTHY_API_KEY": {
       "description": "Your Authy API key",
-      "value": "5",
+      "value": "xxxxxxxxxxxxxxxxx",
       "required": true
     },
     "SECRET_KEY_BASE": {
