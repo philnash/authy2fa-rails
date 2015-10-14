@@ -1,5 +1,5 @@
 class AuthyController < ApplicationController
-  protect_from_forgery except: [:authy_callback, :send_token]
+  protect_from_forgery except: [:callback, :send_token]
 
   # The webhook setup for our Authy application this is where
   # the response from a OneTouch request will come
