@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   post "sessions/verify"
   post "sessions/resend"
 
-  post "authy/callback" => 'sessions#authy_callback'
-  get "authy/status" => 'sessions#one_touch_status'
-  get "authy/send_token" => 'sessions#send_token'
+  post "authy/callback" => 'authy#callback'
+  get "authy/status" => 'authy#one_touch_status'
+  get "authy/send_token" => 'authy#send_token'
 
   # Create users
   resources :users, only: [:new, :create]
