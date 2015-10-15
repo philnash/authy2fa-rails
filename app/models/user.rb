@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
         'Amount' => '10 BTC',
       }
     )
-    puts response.body
     set_status_and_uid(response.body)
 
     return response.body
