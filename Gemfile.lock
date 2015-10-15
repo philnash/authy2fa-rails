@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/authy/authy-ruby.git
+  revision: 4421b184b72d95636d3769d4bea47d030ec7c466
+  specs:
+    authy (2.5.0.pre)
+      httpclient (>= 2.5.3.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,8 +44,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    authy (2.4.2)
-      httpclient (>= 2.5.3.3)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -158,7 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  authy
+  authy!
   bcrypt (~> 3.1.7)
   byebug
   coffee-rails (~> 4.1.0)

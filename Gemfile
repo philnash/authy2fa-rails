@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Authy for 2FA
-gem 'authy'
+gem 'authy', :git => 'https://github.com/authy/authy-ruby.git'
 
 # Use Unicorn as the app server
 gem 'unicorn'

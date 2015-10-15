@@ -11,16 +11,15 @@ class User < ActiveRecord::Base
   validates :phone_number, presence: true
 
   def send_one_touch
-    uri = URI.parse("#{Authy.api_uri}/onetouch/json/users/#{self.authy_id}/approval_requests")
-    
-    response = Net::HTTP.post_form(uri,{
-      "api_key" => Authy.api_key,
-      "message" => "Request to Login to Twilio demo app",
-      "details[Email]" => self.email,
-      "logos[][res]" => "default",
-      "logos[][url]" => "http://howtodocs.s3.amazonaws.com/twilio-logo.png"
-    })
-
+    response = Authy::OneTouch.send_approval_request(
+      id: self.authy_id,
+      message: "Request to Login to Twilio demo app",
+      details: {
+        'Email Address' => self.email,
+        'Amount' => '10 BTC',
+      }
+    )
+    puts response.body
     set_status_and_uid(response.body)
 
     return response.body
