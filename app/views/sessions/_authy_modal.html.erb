@@ -14,7 +14,7 @@
           <i class="fa fa-mobile"></i> Authy OneTouch not available
         </div>
         <p>Please enter your Token</p>
-        <%= form_tag sessions_verify_path id: "authy-sms-form" do %>
+        <%= form_tag authy_verify_path id: "authy-sms-form" do %>
           <div class='form-group'>
             <label class="col-md-4 control-label" for="token">Authy Token</label>
             <div class='col-md-6'>
@@ -25,7 +25,7 @@
           <input type="submit" name="commit" value="Verify2" class="btn btn-success" ng-click="verifyToken(token)" />
         <% end -%>
         <hr>
-        <%= form_tag sessions_resend_path do %>
+        <%= form_tag authy_send_token_path do %>
           <button type="submit" class="btn">Resend code</button>
         <% end -%>
       </div>

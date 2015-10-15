@@ -2,7 +2,7 @@
 <p>
     We've sent you a one-time password to verify your posession of a mobile phone tied to this account. Can you enter the code we sent?
 </p>
-<%= form_tag sessions_verify_path do %>
+<%= form_tag authy_verify_path do %>
   <div class="form-group">
     <%= label_tag :code, "Verification Code:" %>
     <%= text_field_tag :token, '', class: "form-control" %>
@@ -11,6 +11,6 @@
 <% end -%>
 
 <hr>
-<%= form_tag sessions_resend_path do %>
+<%= form_tag authy_send_token_path do %>
   <button type="submit" class="btn">Resend code</button>
 <% end -%>

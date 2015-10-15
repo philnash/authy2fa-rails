@@ -25,4 +25,18 @@ class AuthyController < ApplicationController
     Authy::API.request_sms(id: @user.authy_id)
     render plain: 'sending token'
   end
+
+  def verify
+    @user = User.find(session[:pre_2fa_auth_user_id])
+    token = Authy::API.verify(id: @user.authy_id, token: params[:token])
+    if token.ok?
+      session[:user_id] = @user.id
+      session[:pre_2fa_auth_user_id] = nil
+      redirect_to account_path
+    else
+      flash.now[:danger] = "Incorrect code, please try again"
+      render :two_factor
+    end
+  end
+  
 end

@@ -11,31 +11,12 @@ class SessionsController < ApplicationController
       # Try to verify with OneTouch, will return response body
       one_touch = @user.send_one_touch
 
+      # Respond to the ajax call that requested this 
       render json: one_touch
     else
       @user ||= User.new(email: params[:email])
       render :new
     end
-  end
-
-  def verify
-    @user = User.find(session[:pre_2fa_auth_user_id])
-    token = Authy::API.verify(id: @user.authy_id, token: params[:token])
-    if token.ok?
-      session[:user_id] = @user.id
-      session[:pre_2fa_auth_user_id] = nil
-      redirect_to account_path
-    else
-      flash.now[:danger] = "Incorrect code, please try again"
-      render :two_factor
-    end
-  end
-
-  def resend
-    @user = User.find(session[:pre_2fa_auth_user_id])
-    Authy::API.request_sms(id: @user.authy_id)
-    flash[:notice] = "Verification code re-sent"
-    redirect_to sessions_two_factor_path
   end
 
   def destroy

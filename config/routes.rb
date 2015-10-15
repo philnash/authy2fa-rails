@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   get "sessions/destroy"
   get "sessions/two_factor"
-  post "sessions/verify"
-  post "sessions/resend"
 
   post "authy/callback" => 'authy#callback'
   get "authy/status" => 'authy#one_touch_status'
-  get "authy/send_token" => 'authy#send_token'
+  post "authy/send_token"
+  post "authy/verify"
 
   # Create users
   resources :users, only: [:new, :create]
