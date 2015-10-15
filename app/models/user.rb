@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   validates :phone_number, presence: true
 
   def send_one_touch
-    puts "Sending One Touch to #{self.authy_id}"
     uri = URI.parse("#{Authy.api_uri}/onetouch/json/users/#{self.authy_id}/approval_requests")
+    
     response = Net::HTTP.post_form(uri,{
       "api_key" => Authy.api_key,
       "message" => "Request to Login to Twilio demo app",
