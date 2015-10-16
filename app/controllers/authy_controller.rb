@@ -17,7 +17,7 @@ class AuthyController < ApplicationController
   def one_touch_status
     @user = User.find(session[:pre_2fa_auth_user_id])
     session[:user_id] = @user.approved? ? @user.id : nil
-    render text: @user.authy_status
+    render plain: @user.authy_status
   end
 
   def send_token
