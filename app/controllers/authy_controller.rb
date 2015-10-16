@@ -1,4 +1,13 @@
+require 'openssl'
+require 'Base64'
+
 class AuthyController < ApplicationController
+  # Before we allow the incoming request to callback, verify
+  # that it is an Authy request
+  before_filter :authenticate_authy_request, :only => [
+    :callback
+  ]
+
   protect_from_forgery except: [:callback, :send_token]
 
   # The webhook setup for our Authy application this is where
@@ -36,6 +45,31 @@ class AuthyController < ApplicationController
     else
       flash.now[:danger] = "Incorrect code, please try again"
       redirect_to new_session_path
+    end
+  end
+
+  # Authenticate that all requests to our public-facing callback is
+  # coming from Authy. Adapted from the example at 
+  # https://docs.authy.com/new_doc/authy_onetouch_api#authenticating-callbacks-from-authy-onetouch
+  private
+  def authenticate_authy_request
+    url = request.url
+    raw_params = JSON.parse(request.raw_post)
+    nonce = request.headers["X-Authy-Signature-Nonce"]
+    sorted_params = (Hash[raw_params.sort]).to_query
+
+    # data format of Authy digest
+    data = nonce + "|" + request.method + "|" + url + "|" + sorted_params
+
+    digest = OpenSSL::HMAC.digest('sha256', Authy.api_key, data)
+    digest_in_base64 = Base64.encode64(digest)
+
+    theirs = (request.headers['X-Authy-Signature']).strip
+    mine = digest_in_base64.strip
+
+    unless theirs == mine
+      render plain: 'invalid request signature'
+      false
     end
   end
 end

@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
         message: "Request to Login to Twilio demo app",
         details: {
           'Email Address' => @user.email,
-          'Amount' => '10 BTC',
         }
       )
       status = one_touch.approval_request ? :onetouch : :sms
