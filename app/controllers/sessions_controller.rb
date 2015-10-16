@@ -7,12 +7,21 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:pre_2fa_auth_user_id] = @user.id
-      
-      # Try to verify with OneTouch, will return response body
-      one_touch = @user.send_one_touch
 
-      # Respond to the ajax call that requested this 
-      render json: one_touch
+      # Try to verify with OneTouch
+      one_touch = Authy::OneTouch.send_approval_request(
+        id: @user.authy_id,
+        message: "Request to Login to Twilio demo app",
+        details: {
+          'Email Address' => @user.email,
+          'Amount' => '10 BTC',
+        }
+      )
+      status = one_touch.approval_request ? :onetouch : :sms
+      @user.update(authy_status: status)
+
+      # Respond to the ajax call that requested this with the approval request body
+      render json: one_touch.body
     else
       @user ||= User.new(email: params[:email])
       render :new

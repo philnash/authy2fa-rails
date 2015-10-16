@@ -35,8 +35,7 @@ class AuthyController < ApplicationController
       redirect_to account_path
     else
       flash.now[:danger] = "Incorrect code, please try again"
-      render :two_factor
+      redirect_to new_session_path
     end
   end
-  
 end

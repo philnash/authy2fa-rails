@@ -10,26 +10,4 @@ class User < ActiveRecord::Base
   validates :country_code, presence: true
   validates :phone_number, presence: true
 
-  def send_one_touch
-    response = Authy::OneTouch.send_approval_request(
-      id: self.authy_id,
-      message: "Request to Login to Twilio demo app",
-      details: {
-        'Email Address' => self.email,
-        'Amount' => '10 BTC',
-      }
-    )
-    set_status_and_uid(response.body)
-
-    return response.body
-  end
-
-  private
-
-  def set_status_and_uid(response)
-    response = JSON.parse(response)
-
-    status = response[:approval_request] ? :onetouch : :sms
-    self.update(authy_status: status)
-  end
 end
