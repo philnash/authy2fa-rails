@@ -6,7 +6,7 @@ $(document).ready(function() {
     attemptOneTouchVerification(formData);
   })
 
-  attemptOneTouchVerification = function(form) {
+  var attemptOneTouchVerification = function(form) {
     $.post( "/sessions", form, function(data) {
       $('#authy-modal').modal({backdrop:'static'},'show')
       if (data.success) {
@@ -16,9 +16,9 @@ $(document).ready(function() {
         $('.auth-token').fadeIn()
       }
     })
-  }
+  };
 
-  checkForOneTouch = function() {
+  var checkForOneTouch = function() {
     $.get( "/authy/status", function(data) {
       
       if (data == 'approved') {
@@ -30,16 +30,16 @@ $(document).ready(function() {
         setTimeout(checkForOneTouch, 2000);
       }
     })
-  }
+  };
 
-  showTokenForm = function() {
+  var showTokenForm = function() {
     $('.auth-ot').fadeOut(function() {
       $('.auth-token').fadeIn('slow')
     })
-  }
+  };
 
-  triggerSMSToken = function() {
+  var triggerSMSToken = function() {
     $.get("/authy/send_token")
-  }
+  };
 })
 
