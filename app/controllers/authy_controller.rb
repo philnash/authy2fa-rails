@@ -1,5 +1,5 @@
 require 'openssl'
-require 'Base64'
+require 'base64'
 
 class AuthyController < ApplicationController
   # Before we allow the incoming request to callback, verify
@@ -69,7 +69,6 @@ class AuthyController < ApplicationController
 
     unless theirs == mine
       render plain: 'invalid request signature'
-      false
     end
   end
 end

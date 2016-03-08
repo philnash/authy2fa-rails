@@ -2,6 +2,8 @@
 
 Use Authy to add Two Factor Auth to your Rails app.
 
+[![Build Status](https://travis-ci.org/TwilioDevEd/authy2fa-rails.svg?branch=master)](https://travis-ci.org/TwilioDevEd/authy2fa-rails)
+
 ## Running the application
 
 Clone this repository and cd into the directory then.

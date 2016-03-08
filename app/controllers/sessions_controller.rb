@@ -16,11 +16,11 @@ class SessionsController < ApplicationController
           'Email Address' => @user.email,
         }
       )
-      status = one_touch.approval_request ? :onetouch : :sms
+      status = one_touch['success'] ? :onetouch : :sms
       @user.update(authy_status: status)
 
       # Respond to the ajax call that requested this with the approval request body
-      render json: one_touch.body
+      render json: one_touch['sucess']
     else
       @user ||= User.new(email: params[:email])
       render :new
