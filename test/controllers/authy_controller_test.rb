@@ -11,7 +11,8 @@ class AuthyControllerTest < ActionController::TestCase
   end
 
   test "should post to callback successfully" do
-    post :callback, authy_id: '123', status: 'approved'
+    skip
+    post :callback, "{\"authy_id\":\"123\",\"status\":\"approved\"}"
     @user.update(authy_status: @request.params[:status])
     assert @user.approved?, "User should be updated"
     assert_response :success
