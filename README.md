@@ -1,3 +1,6 @@
+<a href="http://twilio.com/signal">![](https://s3.amazonaws.com/baugues/signal-logo.png)</a>
+
+Join us in San Francisco May 24-25th to [learn directly from the developers who build Authy](https://www.twilio.com/signal/schedule/2crLXWsVZaA2WIkaCUyYOc/aut). 
 # Two Factor Authy
 
 Use Authy to add Two Factor Auth to your Rails app.
