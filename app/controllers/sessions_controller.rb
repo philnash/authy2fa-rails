@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       @user.update(authy_status: status)
 
       # Respond to the ajax call that requested this with the approval request body
-      render json: one_touch['sucess']
+      render json: { success: one_touch['success'] }
     else
       @user ||= User.new(email: params[:email])
       render :new
