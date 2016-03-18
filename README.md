@@ -1,6 +1,7 @@
 <a href="http://twilio.com/signal">![](https://s3.amazonaws.com/baugues/signal-logo.png)</a>
 
-Join us in San Francisco May 24-25th to [learn directly from the developers who build Authy](https://www.twilio.com/signal/schedule/2crLXWsVZaA2WIkaCUyYOc/aut). 
+Join us in San Francisco May 24-25th to [learn directly from the developers who build Authy](https://www.twilio.com/signal/schedule/2crLXWsVZaA2WIkaCUyYOc/aut).
+
 # Two Factor Authy
 
 Use Authy to add Two Factor Auth to your Rails app.
@@ -70,6 +71,17 @@ This project is built using the [Ruby on Rails](http://rubyonrails.org/) web fra
 
   Once ngrok is running, open up your browser and go to your ngrok URL. It will
   look something like this: `http://9a159ccf.ngrok.io`
+
+1. Go to your https://dashboard.authy.com. In the right menu you'll find
+   **Settings**. Then look for **OneTouch settings**.
+   Update the _Endpoint/URL_ with the endpoint you created. Something like this:
+
+   `http://[your-ngrok-subdomain].ngrok.io/authy/callback`
+
+   If you deployed this application to _Heroku_, the the Endpoint/URL should look
+   like this:
+
+   `http://[your-heroku-subdomain].herokuapp.com/authy/callback`
 
 ### Deploy to Heroku
 
