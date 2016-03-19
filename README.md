@@ -52,7 +52,7 @@ This project is built using the [Ruby on Rails](http://rubyonrails.org/) web fra
 1. Make sure the tests succeed.
 
    ```bash
-   $ bundle exec rspec
+   $ bundle exec rake test
    ```
 
 1. Run the server.
