@@ -62,8 +62,8 @@ This project is built using the [Ruby on Rails](http://rubyonrails.org/) web fra
    ```
 
 1. Expose your application to the wider internet using [ngrok](http://ngrok.com). You can click
-  [here](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html) for more details. This step
-  is important because the application won't work as expected if you run it through localhost.
+  [here](https://www.twilio.com/blog/2015/09/6-awesome-reasons-to-use-ngrok-when-testing-webhooks.html) for more details.
+  This step is important because the application won't work as expected if you run it through localhost.
 
   ```bash
   $ ngrok http 3000
@@ -72,13 +72,13 @@ This project is built using the [Ruby on Rails](http://rubyonrails.org/) web fra
   Once ngrok is running, open up your browser and go to your ngrok URL. It will
   look something like this: `http://9a159ccf.ngrok.io`
 
-1. Go to your https://dashboard.authy.com. In the right menu you'll find
-   **Settings**. Then look for **OneTouch settings**.
-   Update the _Endpoint/URL_ with the endpoint you created. Something like this:
+1. Go to your https://dashboard.authy.com. In the menu to the right you'll find the
+   **Settings**. Look for **OneTouch settings** and update the _Endpoint/URL_ with
+   the endpoint you created. Something like this:
 
    `http://[your-ngrok-subdomain].ngrok.io/authy/callback`
 
-   If you deployed this application to _Heroku_, the the Endpoint/URL should look
+   If you deployed this application to _Heroku_, the Endpoint/URL should look
    like this:
 
    `http://[your-heroku-subdomain].herokuapp.com/authy/callback`
