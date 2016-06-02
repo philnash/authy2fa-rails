@@ -2,9 +2,11 @@
 
 Join us in San Francisco May 24-25th to [learn directly from the developers who build Authy](https://www.twilio.com/signal/schedule/2crLXWsVZaA2WIkaCUyYOc/aut).
 
-# Two Factor Authy
+# Two-Factor Authentication with Ruby on Rails
 
 Use Authy to add Two Factor Auth to your Rails app.
+
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/two-factor-authentication/ruby/rails)!
 
 [![Build Status](https://travis-ci.org/TwilioDevEd/authy2fa-rails.svg?branch=master)](https://travis-ci.org/TwilioDevEd/authy2fa-rails)
 
