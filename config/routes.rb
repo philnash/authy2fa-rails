@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   post "authy/callback" => 'authy#callback'
   get "authy/status" => 'authy#one_touch_status'
+  get "authy/live_status" => 'authy#one_touch_status_live'
   post "authy/send_token"
   post "authy/verify"
 

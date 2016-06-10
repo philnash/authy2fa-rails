@@ -2,6 +2,7 @@ require 'openssl'
 require 'base64'
 
 class AuthyController < ApplicationController
+  include ActionController::Live
   # Before we allow the incoming request to callback, verify
   # that it is an Authy request
   before_filter :authenticate_authy_request, :only => [
@@ -29,6 +30,24 @@ class AuthyController < ApplicationController
     render plain: @user.authy_status
   end
 
+  def one_touch_status_live
+    response.headers['Content-Type'] = 'text/event-stream'
+    @user = User.find(session[:pre_2fa_auth_user_id])
+    sse = SSE.new(response.stream, event: 'authy_status')
+    begin
+      @user.on_authy_status_change do |status|
+        if status == 'approved'
+          session[:user_id] = @user.id
+          session[:pre_2fa_auth_user_id] = nil
+        end
+        sse.write({status: status})
+      end
+    rescue ClientDisconnected
+    ensure
+      sse.close
+    end
+  end
+
   def send_token
     @user = User.find(session[:pre_2fa_auth_user_id])
     Authy::API.request_sms(id: @user.authy_id)
@@ -49,7 +68,7 @@ class AuthyController < ApplicationController
   end
 
   # Authenticate that all requests to our public-facing callback is
-  # coming from Authy. Adapted from the example at 
+  # coming from Authy. Adapted from the example at
   # https://docs.authy.com/new_doc/authy_onetouch_api#authenticating-callbacks-from-authy-onetouch
   private
   def authenticate_authy_request
